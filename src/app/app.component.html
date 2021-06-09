@@ -1,0 +1,62 @@
+<div class="content" role="main">
+  <header>
+    <div class="header">
+        <div class="item">
+            <div class="cover">
+                <div class="row">
+                    <div class="header-content">
+                        <div class="line"></div>
+                        <h1>{{title}}</h1>
+                        <h4>Where we lead you to a <em style="color: rgb(255, 223, 162);">healthier</em> and <em style="color: rgb(255, 223, 162);">tastier</em> path.</h4>
+                    </div>
+                </div>
+             </div>
+            </div>
+    </div>
+  </header>
+  <h1><em>What would you like to order today?</em></h1>
+  <div class="container">
+  <div class="row">
+    <p class="totalQty">You have {{totalQty()}} items in your cart.</p>
+  </div>
+  <div class="container" id="menu">
+    <div class="row">
+  <table>
+    <td *ngFor="let i of inventory" [class.featured]="i.featured">
+      <img [src]="i.image" alt="">
+      <h3>{{i.name}}</h3>
+      <!-- <div class="form-group col-12 col-md-4" >
+      <select *ngIf="i.size" (click)="proteinSize(i)">
+          <option value="i.size[0]">{{i.size}}</option>
+          <option value="i.size[1]">{{i.size}}</option>
+          <option value="i.size[2]">{{i.size}}</option>
+      </select>
+      </div> -->
+      <p>{{i.price | currency:"USD"}}</p>
+      <button type="button" (click)="decreaseQty(i)">-</button>
+      <input type="number" [(ngModel)]="i.qty" min=0 oninput="this.value = Math.abs(this.value)">
+      <p *ngIf="i.qty > i.stock " class="stockInfo"> Sorry we only have {{i.stock}} {{i.name}}'s left in stock.</p>
+      <button type="button"  (click)="increaseQty(i)" *ngIf="i.qty < i.stock ">+</button>
+
+      <p *ngIf="i.qty > 0 ">Enjoy your {{i.name}}!</p>
+      <p *ngIf="i.qty === 0 ">No {{i.name}} today?</p>
+    </td>
+  </table>
+</div>
+</div>
+<div class="row">
+  <h3 class="totalPrice">Your total is: {{totalPrice() | currency:'USD'}}</h3>
+</div>
+
+</div>
+<div class="row" id="footer">
+  <hr>
+  <footer class="col-md-12">
+Fuled. Focused. Fit. &#8482;
+  </footer>
+</div>
+ 
+
+</div>
+
+<router-outlet></router-outlet>
